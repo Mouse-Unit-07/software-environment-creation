@@ -94,8 +94,10 @@ linker flags:
 -Wl,-Map="$(OutputFileName).map" 
 -Wl,--start-group -lm  
 -Wl,--end-group 
--Wl,--gc-sections --rodata-writable 
--Wl,--direct-data -mpart=uc3l0256 
+-Wl,--gc-sections 
+--rodata-writable 
+-Wl,--direct-data 
+-mpart=uc3l0256 
 
 assembler:
 
