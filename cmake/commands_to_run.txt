@@ -6,3 +6,7 @@ cmake --build --preset mcu-build
 cmake --preset windows-build
 cmake --build --preset windows-build
 ctest --preset windows-build
+
+# For running Cppcheck
+-> first navigate to the Windows build WORKING_DIRECTORY
+cmake --build . --target cppcheck

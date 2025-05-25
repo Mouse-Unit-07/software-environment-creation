@@ -17,6 +17,32 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(CppUTest)
 
+get_target_property(CPPUTEST_INCLUDE_DIR CppUTest INTERFACE_INCLUDE_DIRECTORIES)
+
+set(CPP_SOURCE_FILES
+    ${CMAKE_SOURCE_DIR}/src/main.c
+    ${CMAKE_SOURCE_DIR}/src/hello_world/print_hello_world.c
+    ${CMAKE_SOURCE_DIR}/tests/test_print_hello_world.cpp
+    ${CMAKE_SOURCE_DIR}/tests/test_main.cpp
+)
+
+add_custom_target(cppcheck
+    COMMAND cppcheck
+        --enable=all
+        --inconclusive
+        --quiet
+        --std=c99
+        --force
+        --inline-suppr
+        --suppress=missingIncludeSystem
+        -I ${CMAKE_SOURCE_DIR}/src/hello_world
+        #-I ${CPPUTEST_INCLUDE_DIR}
+        ${CPP_SOURCE_FILES}
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "Running Cppcheck on manually listed sources"
+    VERBATIM
+)
+
 add_executable(test_print_hello_world
     ${CMAKE_SOURCE_DIR}/src/hello_world/print_hello_world.c
     test_print_hello_world.cpp
