@@ -1,0 +1,8 @@
+# For firmware build (AVR32)
+cmake --preset mcu-build
+cmake --build --preset mcu-build
+
+# For host-side unit testing (Windows/MinGW)
+cmake --preset windows-build
+cmake --build --preset windows-build
+ctest --preset windows-build

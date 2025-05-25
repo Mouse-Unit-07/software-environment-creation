@@ -7,12 +7,14 @@
   },
   "configurePresets": [
     {
-      "name": "debug",
-      "displayName": "AVR32 Debug",
-      "description": "Debug build for AVR32 UC3L0256 using avr32-gcc and Ninja",
+      "name": "mcu-build",
+      "displayName": "AVR32 MCU Debug Build",
+      "description": "Debug build for AVR32 AT32UC3L0256 MCU",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build",
+      "binaryDir": "${sourceDir}/build/mcu_build",
       "cacheVariables": {
+        "TARGET_MCU": "ON",
+        "TARGET_WINDOWS": "OFF",
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_SYSTEM_NAME": "Generic",
         "AVR32_OBJCOPY": "C:/Program Files (x86)/Atmel/Studio/7.0/toolchain/avr32/avr32-gnu-toolchain/bin/avr32-objcopy.exe",
@@ -23,14 +25,44 @@
         "CMAKE_EXE_LINKER_FLAGS": "-Wl,--gc-sections -Wl,--start-group -lm -Wl,--end-group --rodata-writable -Wl,--direct-data -mpart=uc3l0256",
         "CMAKE_VERBOSE_MAKEFILE": "ON"
       }
+    },
+    {
+      "name": "windows-build",
+      "displayName": "Windows Test Debug Build",
+      "description": "Debug unit testing build for Windows",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/windows_build",
+      "cacheVariables": {
+        "TARGET_MCU": "OFF",
+        "TARGET_WINDOWS": "ON",
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER": "C:/msys64/mingw64/bin/gcc.exe",
+        "CMAKE_CXX_COMPILER": "C:/msys64/mingw64/bin/g++.exe"
+      }
     }
   ],
   "buildPresets": [
     {
-      "name": "debug",
-      "configurePreset": "debug",
-      "description": "Build debug target with Ninja",
+      "name": "mcu-build",
+      "configurePreset": "mcu-build",
+      "description": "Build to target AVR32 MCU",
       "jobs": 16
+    },
+    {
+      "name": "windows-build",
+      "configurePreset": "windows-build",
+      "description": "Build to target Windows for unit testing",
+      "jobs": 8
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "windows-build",
+      "configurePreset": "windows-build",
+      "description": "Run unit tests on Windows with MSYS2 GCC",
+      "output": {
+        "outputOnFailure": true
+      }
     }
   ]
 }
