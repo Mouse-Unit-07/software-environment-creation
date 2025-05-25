@@ -1,34 +1,55 @@
 #include <cstdio>
+#include <cstdint>
 #include <cstring>
 #include <fstream>
 extern "C" {
 #include "print_hello_world.h"
 }
 
-#include "CppUTest/TestHarness.h"
+#include <CppUTest/TestHarness.h>
+
+static void failWithMessageIfNull(FILE *file, const char *fail_message)
+{
+    if (file == nullptr) {
+        FAIL(fail_message);
+    }
+}
 
 TEST_GROUP(PrintHelloTest)
 {
+    FILE *original_stdout = nullptr;
+
     void setup()
     {
-        freopen("test_output.txt", "w+", stdout);
+        original_stdout = stdout;
+        FILE *file = freopen("test_output.txt", "w+", stdout);
+        failWithMessageIfNull(file, "Failed to redirect stdout to test_output.txt");
     }
 
     void teardown()
     {
+        failWithMessageIfNull(stdout, "stdout is nullptr");
         fclose(stdout);
-        freopen("CON", "w", stdout); // Reset stdout to console
+        FILE *file = freopen("CON", "w", original_stdout);
+        failWithMessageIfNull(file, "Failed to restore stdout to console");
     }
 };
 
 TEST(PrintHelloTest, PrintsHelloWorld)
 {
+    enum {
+        MAX_BUFFER_SIZE = 128u
+    };
+    char buffer[MAX_BUFFER_SIZE] = {0};
+
     printHelloWorld();
 
     fflush(stdout);
+    
     FILE* file = fopen("test_output.txt", "r");
-    char buffer[128] = {0};
-    fread(buffer, 1, sizeof(buffer), file);
+    failWithMessageIfNull(file, "Failed to open test output file");
+    
+    fread(buffer, sizeof(char), sizeof(buffer), file);
     fclose(file);
 
     STRCMP_EQUAL("Hello World\r\n", buffer);
