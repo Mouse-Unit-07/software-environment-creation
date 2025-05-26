@@ -19,8 +19,7 @@ FetchContent_MakeAvailable(CppUTest)
 
 get_target_property(CPPUTEST_INCLUDE_DIR CppUTest INTERFACE_INCLUDE_DIRECTORIES)
 
-set(CPP_SOURCE_FILES
-    ${CMAKE_SOURCE_DIR}/src/main.c
+set(ALL_SOURCE_FILES_EXCEPT_MAIN
     ${CMAKE_SOURCE_DIR}/src/hello_world/print_hello_world.c
     ${CMAKE_SOURCE_DIR}/tests/test_print_hello_world.cpp
     ${CMAKE_SOURCE_DIR}/tests/test_main.cpp
@@ -37,24 +36,36 @@ add_custom_target(cppcheck
         --suppress=missingIncludeSystem
         -I ${CMAKE_SOURCE_DIR}/src/hello_world
         #-I ${CPPUTEST_INCLUDE_DIR}
-        ${CPP_SOURCE_FILES}
+        ${CMAKE_SOURCE_DIR}/src/main.c
+        ${ALL_SOURCE_FILES_EXCEPT_MAIN}
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     COMMENT "Running Cppcheck on manually listed sources"
     VERBATIM
 )
 
-add_custom_target(coverage
-    COMMAND ${CMAKE_COMMAND} -E echo "Running gcov..."
-    COMMAND gcov print_hello_world.c
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/tests/CMakeFiles/test_print_hello_world.dir/__/src/hello_world
-    COMMENT "Generating code coverage with gcov"
-)
+set(FORMATTED_SOURCES "")
+foreach(src ${ALL_SOURCE_FILES_EXCEPT_MAIN})
+    # Make path relative to project root
+    file(RELATIVE_PATH rel_path "${CMAKE_SOURCE_DIR}" "${src}")
+    set(formatted_file "${CMAKE_BINARY_DIR}/clang-format-output/${rel_path}")
+    list(APPEND FORMATTED_SOURCES "${formatted_file}")
 
+    get_filename_component(formatted_file_dir "${formatted_file}" DIRECTORY)
+
+    add_custom_command(
+        OUTPUT "${formatted_file}"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${formatted_file_dir}"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${src}" "${formatted_file}"
+        COMMAND clang-format -i -style=file "${formatted_file}"
+        DEPENDS "${src}"
+        COMMENT "Formatting ${rel_path} -> ${formatted_file}"
+    )
+endforeach()
+
+add_custom_target(format_sources DEPENDS ${FORMATTED_SOURCES})
 
 add_executable(test_print_hello_world
-    ${CMAKE_SOURCE_DIR}/src/hello_world/print_hello_world.c
-    ${CMAKE_SOURCE_DIR}/tests/test_print_hello_world.cpp
-    ${CMAKE_SOURCE_DIR}/tests/test_main.cpp
+    ${ALL_SOURCE_FILES_EXCEPT_MAIN}
 )
 
 target_include_directories(test_print_hello_world PRIVATE

@@ -1,19 +1,26 @@
-# For firmware build (AVR32)
+# For AVR32 MCU build
 cmake --preset mcu-build
 cmake --build --preset mcu-build
 
-# For host-side unit testing (Windows/MinGW)
+# For Windows build
 cmake --preset windows-build
 cmake --build --preset windows-build
 ctest --preset windows-build
 
-# For running Cppcheck
--> first navigate to build/windows_build directory
+# For running CppCheck
+-> build Windows build
+-> first navigate to the Windows build directory build/windows_build, then run CMake "build" command to run CppCheck
+cd 
 cmake --build . --target cppcheck
 
-# For running gcov coverage tools
-cmake --preset windows-coverage
-cmake --build --preset windows-coverage
-ctest --preset windows-build
--> navigate to build/windows_coverage directory
-cmake --build . --target coverage
+# For running clang-format_sources
+-> build Windows build
+-> first navigate to the Windows build directory build/windows_build, then run CMake "build" command to run CppCheck
+cmake --build . --target format_sources
+-> formatted copies of source files will be in build/windows_build/clang-format-output
+
+# For running gcovr
+-> build Windows build and run ctest
+-> open Windows command prompt where gcovr's been installed through pip
+-> navigate to top level project directory
+gcovr -r . --filter=src/
