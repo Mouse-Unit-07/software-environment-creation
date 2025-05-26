@@ -1,5 +1,6 @@
 *.xml
 *.atsln
+*.gcov
 
 **/Debug/
 .vs/
