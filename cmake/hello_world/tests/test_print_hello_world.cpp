@@ -1,3 +1,13 @@
+/*================================ FILE INFO =================================*/
+/* Filename           : test_print_hello_world.cpp                            */
+/*                                                                            */
+/* File description here...                                                   */
+/*                                                                            */
+/*============================================================================*/
+
+/*============================================================================*/
+/*                               Include Files                                */
+/*============================================================================*/
 #include <cstdint>
 #include <cstdio>
 #include <cstring>
@@ -8,6 +18,9 @@ extern "C" {
 
 #include <CppUTest/TestHarness.h>
 
+/*============================================================================*/
+/*                             Private Definitions                            */
+/*============================================================================*/
 static void failWithMessageIfNull(FILE *file, const char *fail_message)
 {
     if (file == nullptr) {
@@ -15,6 +28,9 @@ static void failWithMessageIfNull(FILE *file, const char *fail_message)
     }
 }
 
+/*============================================================================*/
+/*                                 Test Group                                 */
+/*============================================================================*/
 TEST_GROUP(PrintHelloTest)
 {
     FILE *original_stdout = nullptr;
@@ -36,6 +52,9 @@ TEST_GROUP(PrintHelloTest)
     }
 };
 
+/*============================================================================*/
+/*                                    Tests                                   */
+/*============================================================================*/
 TEST(PrintHelloTest, PrintsHelloWorld)
 {
     enum {
