@@ -7,6 +7,12 @@ cmake --preset windows-build
 cmake --build --preset windows-build
 ctest --preset windows-build
 
-# For running Cppcheck
--> first navigate to the Windows build WORKING_DIRECTORY
+# For running CppCheck
+-> first navigate to the Windows build directory build/windows_build, then run CMake "build" command to run CppCheck
+cd 
 cmake --build . --target cppcheck
+
+# For running clang-format_sources
+-> first navigate to the Windows build directory build/windows_build, then run CMake "build" command to run CppCheck
+cmake --build . --target format_sources
+-> formatted copies of source files will be in build/windows_build/clang-format-output
