@@ -1,5 +1,5 @@
-#include <cstdio>
 #include <cstdint>
+#include <cstdio>
 #include <cstring>
 #include <fstream>
 extern "C" {
@@ -23,7 +23,8 @@ TEST_GROUP(PrintHelloTest)
     {
         original_stdout = stdout;
         FILE *file = freopen("test_output.txt", "w+", stdout);
-        failWithMessageIfNull(file, "Failed to redirect stdout to test_output.txt");
+        failWithMessageIfNull(file, 
+            "Failed to redirect stdout to test_output.txt");
     }
 
     void teardown()
@@ -45,10 +46,10 @@ TEST(PrintHelloTest, PrintsHelloWorld)
     printHelloWorld();
 
     fflush(stdout);
-    
-    FILE* file = fopen("test_output.txt", "r");
+
+    FILE *file = fopen("test_output.txt", "r");
     failWithMessageIfNull(file, "Failed to open test output file");
-    
+
     fread(buffer, sizeof(char), sizeof(buffer), file);
     fclose(file);
 
