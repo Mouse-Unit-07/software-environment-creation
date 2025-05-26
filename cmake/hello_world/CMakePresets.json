@@ -39,6 +39,16 @@
         "CMAKE_C_COMPILER": "C:/msys64/mingw64/bin/gcc.exe",
         "CMAKE_CXX_COMPILER": "C:/msys64/mingw64/bin/g++.exe"
       }
+    },
+    {
+      "name": "windows-coverage",
+      "inherits": "windows-build",
+      "binaryDir": "${sourceDir}/build/windows_coverage",
+      "cacheVariables": {
+        "CMAKE_C_FLAGS": "-fprofile-arcs -ftest-coverage -O0 -g",
+        "CMAKE_CXX_FLAGS": "-fprofile-arcs -ftest-coverage -O0 -g",
+        "CMAKE_EXE_LINKER_FLAGS": "-fprofile-arcs -ftest-coverage"
+      }
     }
   ],
   "buildPresets": [
@@ -53,6 +63,12 @@
       "configurePreset": "windows-build",
       "description": "Build to target Windows for unit testing",
       "jobs": 8
+    },
+    {
+      "name": "windows-coverage",
+      "configurePreset": "windows-coverage",
+      "description": "Build to target Windows for unit testing, with build flags for test coverage",
+      "jobs": 8
     }
   ],
   "testPresets": [
@@ -60,6 +76,14 @@
       "name": "windows-build",
       "configurePreset": "windows-build",
       "description": "Run unit tests on Windows with MSYS2 GCC",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "windows-coverage",
+      "configurePreset": "windows-coverage",
+      "description": "Run unit tests on Windows with MSYS2 GCC, w/ the test coverage build",
       "output": {
         "outputOnFailure": true
       }

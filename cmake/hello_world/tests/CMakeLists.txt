@@ -43,10 +43,18 @@ add_custom_target(cppcheck
     VERBATIM
 )
 
+add_custom_target(coverage
+    COMMAND ${CMAKE_COMMAND} -E echo "Running gcov..."
+    COMMAND gcov print_hello_world.c
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/tests/CMakeFiles/test_print_hello_world.dir/__/src/hello_world
+    COMMENT "Generating code coverage with gcov"
+)
+
+
 add_executable(test_print_hello_world
     ${CMAKE_SOURCE_DIR}/src/hello_world/print_hello_world.c
-    test_print_hello_world.cpp
-    test_main.cpp
+    ${CMAKE_SOURCE_DIR}/tests/test_print_hello_world.cpp
+    ${CMAKE_SOURCE_DIR}/tests/test_main.cpp
 )
 
 target_include_directories(test_print_hello_world PRIVATE

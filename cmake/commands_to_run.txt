@@ -8,5 +8,12 @@ cmake --build --preset windows-build
 ctest --preset windows-build
 
 # For running Cppcheck
--> first navigate to the Windows build WORKING_DIRECTORY
+-> first navigate to build/windows_build directory
 cmake --build . --target cppcheck
+
+# For running gcov coverage tools
+cmake --preset windows-coverage
+cmake --build --preset windows-coverage
+ctest --preset windows-build
+-> navigate to build/windows_coverage directory
+cmake --build . --target coverage
