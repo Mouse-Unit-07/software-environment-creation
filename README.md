@@ -1,11 +1,13 @@
-# Hello World Standalone
-A standalone Hello World repository to test building a project w/ CMake, CppUTest, CppCheck, gcovr, and clang-format.
-
-A repo to create a development environment to be migrated to a Docker container.
+# Development Environment Creation Repo
+  - A development environment creation repository to test building a project w/ CMake, CppUTest, CppCheck, gcovr, and clang-format.
+  - Original plan was to migrate to a Docker container, until seeing that Windows Docker containers require Windows Pro, and that our MCU doesn't have a mainstream Linux toolchain. 
+  - A uniform development can still be made, it just requires a list of installation and setup instructions when Docker is out of the picture.
 
 ## cmake directory
-- Hello World project that builds w/ CMake using Atmel/Microchip's AVR32 Windows toolchain
-- Can build to target the MCU for flashing and Windows for unit testing, CppCheck, and format checking
+- Generic build space to clone down your source code repo and build w/ CMake to target both Atmel/Microchip's AVR32 MCU and Windows. 
+- Hello World project may be cloned into src/ as an example
+- Provides unit testing, CppCheck, and format checking when a project is built for Windows
+
 - **Dependent on**
   - MSYS2 MINGW64 installation: C:/msys64/mingw64/bin
     - gcc 15.0.1
