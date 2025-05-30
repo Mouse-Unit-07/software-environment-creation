@@ -1,0 +1,63 @@
+------ Build started: Project: hello_world, Configuration: Debug AVR ------
+Build started.
+Project "hello_world.cproj" (default targets):
+Target "PreBuildEvent" skipped, due to false condition; ('$(PreBuildEvent)'!='') was evaluated as (''!='').
+Target "CoreBuild" in file "C:\Program Files (x86)\Atmel\Studio\7.0\Vs\Compiler.targets" from project "C:\ryuichi_stuff\micromouse\Mouse Unit 07\software-hello-world\microchip-studio-ide\executable\hello_world\hello_world\hello_world.cproj" (target "Build" depends on it):
+	Task "RunCompilerTask"
+		Shell Utils Path C:\Program Files (x86)\Atmel\Studio\7.0\shellUtils
+		C:\Program Files (x86)\Atmel\Studio\7.0\shellUtils\make.exe all --jobs 16 --output-sync 
+		Building file: .././main.c
+		Invoking: AVR32/GNU C Compiler : 4.4.7
+		"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr32\avr32-gnu-toolchain\bin\avr32-gcc.exe"  -x c -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\UC3L_DFP\1.0.59\include\AT32UC3L0256"  -O0 -ffunction-sections -masm-addr-pseudos -g3 -Wall -mpart=uc3l0256 -c -std=gnu99 -v -MD -MP -MF "main.d" -MT"main.d" -MT"main.o"   -o "main.o" ".././main.c" 
+		Finished building: .././main.c
+		Using built-in specs.
+		Target: avr32
+		Configured with: /data2/home/toolsbuild/jenkins-mcu-knuth/workspace/avr32-gnu-toolchain/src/gcc/configure --target=avr32 --host=i686-pc-mingw32 --build=x86_64-pc-linux-gnu --prefix=/data2/home/toolsbuild/jenkins-mcu-knuth/workspace/avr32-gnu-toolchain/avr32-gnu-toolchain-win32_x86 --enable-languages=c,c++ --disable-nls --disable-libssp --disable-libstdcxx-pch --with-dwarf2 --enable-version-specific-runtime-libs --disable-shared --enable-doc --with-mpfr-lib=/data2/home/toolsbuild/jenkins-mcu-knuth/workspace/avr32-gnu-toolchain/avr32-gnu-toolchain-win32_x86/lib --with-mpfr-include=/data2/home/toolsbuild/jenkins-mcu-knuth/workspace/avr32-gnu-toolchain/avr32-gnu-toolchain-win32_x86/include --with-gmp=/data2/home/toolsbuild/jenkins-mcu-knuth/workspace/avr32-gnu-toolchain/avr32-gnu-toolchain-win32_x86 --with-mpc=/data2/home/toolsbuild/jenkins-mcu-knuth/workspace/avr32-gnu-toolchain/avr32-gnu-toolchain-win32_x86 --enable-__cxa_atexit --disable-shared --with-newlib --enable-win32-registry=avr32toolchain --enable-sjlj-exceptions --with-pkgversion=AVR_32_bit_GNU_Toolchain_3.4.3_820 --with-bugurl=http://www.atmel.com/avr
+		Thread model: single
+		gcc version 4.4.7 (AVR_32_bit_GNU_Toolchain_3.4.3_820) 
+		COLLECT_GCC_OPTIONS='-DDEBUG' '-IC:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\UC3L_DFP\1.0.59\include\AT32UC3L0256' '-O0' '-ffunction-sections' '-masm-addr-pseudos' '-g3' '-Wall' '-mpart=uc3l0256' '-c' '-std=gnu99' '-v' '-MD' '-MP' '-MF' 'main.d' '-MTmain.d' '-MTmain.o' '-o' 'main.o'
+		 c:/program files (x86)/atmel/studio/7.0/toolchain/avr32/avr32-gnu-toolchain/bin/../libexec/gcc/avr32/4.4.7/cc1.exe -quiet -v -IC:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\UC3L_DFP\1.0.59\include\AT32UC3L0256 -imultilib ucr3 -iprefix c:\program files (x86)\atmel\studio\7.0\toolchain\avr32\avr32-gnu-toolchain\bin\../lib/gcc/avr32/4.4.7/ -MD main.d -MF main.d -MP -MTmain.d -MTmain.o -MQ main.o -dD -DDEBUG .././main.c -quiet -dumpbase main.c -masm-addr-pseudos -mpart=uc3l0256 -auxbase-strip main.o -g3 -O0 -Wall -std=gnu99 -version -ffunction-sections -o C:\Users\ryuno\AppData\Local\Temp\cc7AvMB6.s
+		ignoring nonexistent directory "c:\program files (x86)\atmel\studio\7.0\toolchain\avr32\avr32-gnu-toolchain\bin\../lib/gcc/avr32/4.4.7/../../../../avr32/sys-include"
+		ignoring duplicate directory "c:/program files (x86)/atmel/studio/7.0/toolchain/avr32/avr32-gnu-toolchain/lib/gcc/../../lib/gcc/avr32/4.4.7/include"
+		ignoring duplicate directory "c:/program files (x86)/atmel/studio/7.0/toolchain/avr32/avr32-gnu-toolchain/lib/gcc/../../lib/gcc/avr32/4.4.7/include-fixed"
+		ignoring nonexistent directory "c:/program files (x86)/atmel/studio/7.0/toolchain/avr32/avr32-gnu-toolchain/lib/gcc/../../lib/gcc/avr32/4.4.7/../../../../avr32/sys-include"
+		ignoring duplicate directory "c:/program files (x86)/atmel/studio/7.0/toolchain/avr32/avr32-gnu-toolchain/lib/gcc/../../lib/gcc/avr32/4.4.7/../../../../avr32/include"
+		#include "..." search starts here:
+		#include <...> search starts here:
+		 C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\UC3L_DFP\1.0.59\include\AT32UC3L0256
+		 c:\program files (x86)\atmel\studio\7.0\toolchain\avr32\avr32-gnu-toolchain\bin\../lib/gcc/avr32/4.4.7/include
+		 c:\program files (x86)\atmel\studio\7.0\toolchain\avr32\avr32-gnu-toolchain\bin\../lib/gcc/avr32/4.4.7/include-fixed
+		 c:\program files (x86)\atmel\studio\7.0\toolchain\avr32\avr32-gnu-toolchain\bin\../lib/gcc/avr32/4.4.7/../../../../avr32/include
+		End of search list.
+		GNU C (AVR_32_bit_GNU_Toolchain_3.4.3_820) version 4.4.7 (avr32)
+			compiled by GNU C version 4.6.1, GMP version 5.0.2, MPFR version 3.0.0.
+		GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+		Compiler executable checksum: 31fa7a0d9a72dbb30fbce72606b6d921
+		COLLECT_GCC_OPTIONS='-DDEBUG' '-IC:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\UC3L_DFP\1.0.59\include\AT32UC3L0256' '-O0' '-ffunction-sections' '-masm-addr-pseudos' '-g3' '-Wall' '-mpart=uc3l0256' '-c' '-std=gnu99' '-v' '-MD' '-MP' '-MF' 'main.d' '-MTmain.d' '-MTmain.o' '-o' 'main.o'
+		 c:/program files (x86)/atmel/studio/7.0/toolchain/avr32/avr32-gnu-toolchain/bin/../lib/gcc/avr32/4.4.7/../../../../avr32/bin/as.exe -mpart=uc3l0256 -o main.o C:\Users\ryuno\AppData\Local\Temp\cc7AvMB6.s
+		COMPILER_PATH=c:/program files (x86)/atmel/studio/7.0/toolchain/avr32/avr32-gnu-toolchain/bin/../libexec/gcc/avr32/4.4.7/;c:/program files (x86)/atmel/studio/7.0/toolchain/avr32/avr32-gnu-toolchain/bin/../libexec/gcc/;c:/program files (x86)/atmel/studio/7.0/toolchain/avr32/avr32-gnu-toolchain/bin/../lib/gcc/avr32/4.4.7/../../../../avr32/bin/
+		LIBRARY_PATH=c:/program files (x86)/atmel/studio/7.0/toolchain/avr32/avr32-gnu-toolchain/bin/../lib/gcc/avr32/4.4.7/ucr3/;c:/program files (x86)/atmel/studio/7.0/toolchain/avr32/avr32-gnu-toolchain/bin/../lib/gcc/avr32/4.4.7/../../../../avr32/lib/ucr3/;c:/program files (x86)/atmel/studio/7.0/toolchain/avr32/avr32-gnu-toolchain/bin/../lib/gcc/avr32/4.4.7/;c:/program files (x86)/atmel/studio/7.0/toolchain/avr32/avr32-gnu-toolchain/bin/../lib/gcc/;c:/program files (x86)/atmel/studio/7.0/toolchain/avr32/avr32-gnu-toolchain/bin/../lib/gcc/avr32/4.4.7/../../../../avr32/lib/
+		COLLECT_GCC_OPTIONS='-DDEBUG' '-IC:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\UC3L_DFP\1.0.59\include\AT32UC3L0256' '-O0' '-ffunction-sections' '-masm-addr-pseudos' '-g3' '-Wall' '-mpart=uc3l0256' '-c' '-std=gnu99' '-v' '-MD' '-MP' '-MF' 'main.d' '-MTmain.d' '-MTmain.o' '-o' 'main.o'
+		Building target: hello_world.elf
+		Invoking: AVR32/GNU Linker : 4.4.7
+		"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr32\avr32-gnu-toolchain\bin\avr32-gcc.exe" -o hello_world.elf  main.o   -Wl,-Map="hello_world.map" -Wl,--start-group -lm  -Wl,--end-group -Wl,--gc-sections --rodata-writable -Wl,--direct-data -mpart=uc3l0256  
+		Finished building target: hello_world.elf
+		"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr32\avr32-gnu-toolchain\bin\avr32-objcopy.exe" -O ihex -R .eeprom -R .fuse -R .lock -R .signature "hello_world.elf" "hello_world.hex"
+		"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr32\avr32-gnu-toolchain\bin\avr32-objcopy.exe" -j .eeprom  --set-section-flags=.eeprom=alloc,load --change-section-lma .eeprom=0  --no-change-warnings -O ihex "hello_world.elf" "hello_world.eep" || exit 0
+		"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr32\avr32-gnu-toolchain\bin\avr32-objdump.exe" -h -S "hello_world.elf" > "hello_world.lss"
+		"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr32\avr32-gnu-toolchain\bin\avr32-objcopy.exe" -O srec -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures "hello_world.elf" "hello_world.srec"
+		"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr32\avr32-gnu-toolchain\bin\avr32-size.exe" "hello_world.elf"
+		   text	   data	    bss	    dec	    hex	filename
+		   6796	   1316	   4172	  12284	   2ffc	hello_world.elf
+	Done executing task "RunCompilerTask".
+	Task "RunOutputFileVerifyTask"
+				Program Memory Usage 	:	8112 bytes   3.1 % Full
+	Done executing task "RunOutputFileVerifyTask".
+Done building target "CoreBuild" in project "hello_world.cproj".
+Target "PostBuildEvent" skipped, due to false condition; ('$(PostBuildEvent)' != '') was evaluated as ('' != '').
+Target "Build" in file "C:\Program Files (x86)\Atmel\Studio\7.0\Vs\Avr.common.targets" from project "C:\ryuichi_stuff\micromouse\Mouse Unit 07\software-hello-world\microchip-studio-ide\executable\hello_world\hello_world\hello_world.cproj" (entry point):
+Done building target "Build" in project "hello_world.cproj".
+Done building project "hello_world.cproj".
+
+Build succeeded.
+========== Build: 1 succeeded or up-to-date, 0 failed, 0 skipped ==========

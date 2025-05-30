@@ -5,26 +5,37 @@
 #                                                                              #
 #------------------------------------------------------------------------------#
 cmake_minimum_required(VERSION 4.0.2)
-project(tests LANGUAGES C CXX)
-
-enable_testing()
+project(hello_world_tests LANGUAGES C CXX)
 
 include(FetchContent)
 FetchContent_Declare(
-  CppUTest
-  GIT_REPOSITORY https://github.com/cpputest/cpputest.git
-  GIT_TAG master
+    CppUTest
+    GIT_REPOSITORY https://github.com/cpputest/cpputest.git
+    GIT_TAG master
 )
 FetchContent_MakeAvailable(CppUTest)
 
-get_target_property(CPPUTEST_INCLUDE_DIR CppUTest INTERFACE_INCLUDE_DIRECTORIES)
-
-set(ALL_SOURCE_FILES_EXCEPT_MAIN
+set(TEST_SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_print_hello_world.cpp
     ${CMAKE_SOURCE_DIR}/src/hello_world/print_hello_world.c
-    ${CMAKE_SOURCE_DIR}/tests/test_print_hello_world.cpp
-    ${CMAKE_SOURCE_DIR}/tests/test_main.cpp
 )
 
+add_executable(test_print_hello_world ${TEST_SOURCES})
+
+target_include_directories(test_print_hello_world PRIVATE
+    ${CMAKE_SOURCE_DIR}/src/hello_world
+)
+
+target_link_libraries(test_print_hello_world PRIVATE
+    hello_world_lib
+    CppUTest
+    CppUTestExt
+)
+
+add_test(NAME PrintHelloTest COMMAND test_print_hello_world)
+
+# === Static Analysis: Cppcheck ===
 add_custom_target(cppcheck
     COMMAND cppcheck
         --enable=all
@@ -35,17 +46,16 @@ add_custom_target(cppcheck
         --inline-suppr
         --suppress=missingIncludeSystem
         -I ${CMAKE_SOURCE_DIR}/src/hello_world
-        #-I ${CPPUTEST_INCLUDE_DIR}
         ${CMAKE_SOURCE_DIR}/src/main.c
-        ${ALL_SOURCE_FILES_EXCEPT_MAIN}
+        ${TEST_SOURCES}
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-    COMMENT "Running Cppcheck on manually listed sources"
+    COMMENT "Running Cppcheck on source and test files"
     VERBATIM
 )
 
+# === Formatting: clang-format ===
 set(FORMATTED_SOURCES "")
-foreach(src ${ALL_SOURCE_FILES_EXCEPT_MAIN})
-    # Make path relative to project root
+foreach(src ${TEST_SOURCES})
     file(RELATIVE_PATH rel_path "${CMAKE_SOURCE_DIR}" "${src}")
     set(formatted_file "${CMAKE_BINARY_DIR}/clang-format-output/${rel_path}")
     list(APPEND FORMATTED_SOURCES "${formatted_file}")
@@ -63,18 +73,3 @@ foreach(src ${ALL_SOURCE_FILES_EXCEPT_MAIN})
 endforeach()
 
 add_custom_target(format_sources DEPENDS ${FORMATTED_SOURCES})
-
-add_executable(test_print_hello_world
-    ${ALL_SOURCE_FILES_EXCEPT_MAIN}
-)
-
-target_include_directories(test_print_hello_world PRIVATE
-    ${CMAKE_SOURCE_DIR}/src/hello_world
-)
-
-target_link_libraries(test_print_hello_world PRIVATE
-    CppUTest
-    CppUTestExt
-)
-
-add_test(NAME PrintHelloTest COMMAND test_print_hello_world)
