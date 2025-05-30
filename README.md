@@ -6,6 +6,7 @@
 ## cmake directory
 - Generic build space to clone down your source code repo and build w/ CMake to target both Atmel/Microchip's AVR32 MCU and Windows. 
 - Hello World project may be cloned into src/ as an example
+  - Run `git clone https://github.com/Mouse-Unit-07/software-hello-world.git .` to clone the Hello World repository into src/ folder
 - Provides unit testing, CppCheck, and format checking when a project is built for Windows
 
 - **Dependent on**
