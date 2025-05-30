@@ -14,7 +14,6 @@
       "binaryDir": "${sourceDir}/build/mcu_build",
       "cacheVariables": {
         "TARGET_MCU": "ON",
-        "TARGET_WINDOWS": "OFF",
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_SYSTEM_NAME": "Generic",
         "AVR32_OBJCOPY": "C:/Program Files (x86)/Atmel/Studio/7.0/toolchain/avr32/avr32-gnu-toolchain/bin/avr32-objcopy.exe",
@@ -33,7 +32,6 @@
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/windows_build",
       "cacheVariables": {
-        "TARGET_MCU": "OFF",
         "TARGET_WINDOWS": "ON",
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_C_COMPILER": "C:/msys64/mingw64/bin/gcc.exe",
